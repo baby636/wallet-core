@@ -11,7 +11,9 @@
     "codegen:js": "pbjs -t static-module '../src/proto/*.proto' --no-delimited --force-long -o src/generated/core_proto.js",
     "codegen:ts": "pbts -o src/generated/core_proto.d.ts src/generated/core_proto.js",
     "clean": "rm -rf dist src/generated && mkdir -p dist/generated src/generated",
-    "build": "yarn clean && yarn generate && cp src/generated/core_proto.d.ts src/generated/core_proto.js dist/generated && tsc --skipLibCheck"
+    "build": "yarn clean && yarn generate && cp src/generated/core_proto.d.ts src/generated/core_proto.js dist/generated && tsc --skipLibCheck",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,8 @@
     "dist"
   ],
   "dependencies": {
-    "protobufjs": "^6.9.0"
+    "protobufjs": "^6.9.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
@@ -41,5 +44,6 @@
     "prettier": "^2.0.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
-  }
+  },
+  "snyk": true
 }
